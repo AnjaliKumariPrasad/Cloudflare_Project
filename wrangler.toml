@@ -1,0 +1,17 @@
+name = "todo-app"
+main = "api/src/index.ts"
+compatibility_date = "2025-01-01"
+
+# Tier 1 (frontend): the built React app is served by Workers Static Assets.
+[assets]
+directory = "./frontend/dist"
+not_found_handling = "single-page-application"
+# Run the Worker (API) first for /api/*; everything else is served from assets.
+run_worker_first = ["/api/*"]
+
+# Tier 3 (database): Cloudflare D1.
+[[d1_databases]]
+binding = "DB"
+database_name = "todos-db"
+# Replace with the id printed by: npx wrangler d1 create todos-db
+database_id = "bbce2d0c-8b86-445a-9972-4a9af4fa08d1"

@@ -1,0 +1,21 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "npm ci --prefix frontend && npm run build --prefix frontend",
+    "dev": "wrangler dev",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "db:local": "wrangler d1 execute todos-db --local --file=./api/src/db/schema.sql",
+    "db:remote": "wrangler d1 execute todos-db --remote --file=./api/src/db/schema.sql",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "dependencies": {
+    "hono": "^3.7.2"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261110.1",
+    "wrangler": "^4.0.0"
+  }
+}
